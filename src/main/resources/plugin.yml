@@ -1,0 +1,5 @@
+name: ModerrkowoCore
+version: ${project.version}
+main: pl.moderr.moderrkowo.core.Main
+api-version: 1.16
+authors: [ MODERR ]
