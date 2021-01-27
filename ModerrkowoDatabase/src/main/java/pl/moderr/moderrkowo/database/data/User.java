@@ -6,6 +6,10 @@
  */
 package pl.moderr.moderrkowo.database.data;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
+import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class User {
@@ -24,5 +28,13 @@ public class User {
     }
     public String getName() {
         return _NAME;
+    }
+
+    /**
+     * @return Zwraca instacje gracza
+     */
+    @Nullable
+    public Player getPlayer(){
+        return Bukkit.getPlayer(_UUID);
     }
 }

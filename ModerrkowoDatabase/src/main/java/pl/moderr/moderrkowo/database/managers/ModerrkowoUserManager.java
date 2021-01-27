@@ -20,6 +20,7 @@ import pl.moderr.moderrkowo.database.data.User;
 import pl.moderr.moderrkowo.database.events.DatabaseLog;
 import pl.moderr.moderrkowo.database.events.LogAction;
 import pl.moderr.moderrkowo.database.events.LogResult;
+import pl.moderr.moderrkowo.database.exceptions.PlayerIsOffline;
 import pl.moderr.moderrkowo.database.exceptions.UserIsAlreadyLoaded;
 import pl.moderr.moderrkowo.database.exceptions.UserNotLoaded;
 
@@ -32,7 +33,7 @@ public class ModerrkowoUserManager implements Listener {
     private void onPlayerJoin(PlayerJoinEvent e) {
         ModerrkowoDatabase.getInstance().sendLog(new DatabaseLog("Próba załadowania gracza...", LogAction.TRY));
         try {
-            LoadUser(e.getPlayer().getUniqueId());
+            DatabaseLoadUser(e.getPlayer().getUniqueId());
             ModerrkowoDatabase.getInstance().sendLog(new DatabaseLog("Załadowano gracza pomyślnie", LogAction.UserManager_LOAD, LogResult.SUCCESS));
         } catch (UserIsAlreadyLoaded userIsAlreadyLoaded) {
             userIsAlreadyLoaded.printStackTrace();
@@ -75,7 +76,7 @@ public class ModerrkowoUserManager implements Listener {
     public User getUserForce(UUID uuid){
         if (!LoadedUsers.containsKey(uuid)) {
             try {
-                LoadUser(uuid);
+                DatabaseLoadUser(uuid);
             } catch (UserIsAlreadyLoaded userIsAlreadyLoaded) {
                 userIsAlreadyLoaded.printStackTrace();
             }
@@ -111,16 +112,38 @@ public class ModerrkowoUserManager implements Listener {
      * @param uuid Identyfikator gracza
      * @throws UserIsAlreadyLoaded Wywołane kiedy gracz już jest załadowany
      */
-    public void LoadUser(UUID uuid) throws UserIsAlreadyLoaded {
+    public void DatabaseLoadUser(UUID uuid) throws UserIsAlreadyLoaded {
         if(LoadedUsers.containsKey(uuid)){
             throw new UserIsAlreadyLoaded();
         }else{
-            ModerrkowoDatabase.getInstance().getUser(uuid, new CallbackUserLoad() {
+            ModerrkowoDatabase.getInstance().existsUser(uuid, new CallbackExists() {
                 @Override
-                public void onDone(User result) {
-                    LoadedUsers.put(uuid, result);
-                    ModerrkowoDatabase.getInstance().sendUserLoaded(result);
-                    ModerrkowoDatabase.getInstance().sendLog(new DatabaseLog("Udało się załadować gracza", LogAction.UserManager_LOAD, LogResult.SUCCESS));
+                public void onDone(Boolean result) {
+                    if(result){
+                        ModerrkowoDatabase.getInstance().getUser(uuid, new CallbackUserLoad() {
+                            @Override
+                            public void onDone(User result) {
+                                LoadedUsers.put(uuid, result);
+                                ModerrkowoDatabase.getInstance().sendUserLoaded(result);
+                                ModerrkowoDatabase.getInstance().sendLog(new DatabaseLog("Udało się załadować gracza", LogAction.UserManager_LOAD, LogResult.SUCCESS));
+                            }
+
+                            @Override
+                            public void onFail(Exception cause) {
+                                ModerrkowoDatabase.getInstance().sendLog(new DatabaseLog("Nie udało się załadować gracza", LogAction.UserManager_LOAD, LogResult.EXCEPTION, cause));
+                            }
+                        });
+                    }else{
+                        Player p = Bukkit.getPlayer(uuid);
+                        if(p != null){
+                            User u = new User(uuid, p.getName());
+                            LoadedUsers.put(uuid, u);
+                            ModerrkowoDatabase.getInstance().sendUserRegister(u);
+                            ModerrkowoDatabase.getInstance().sendUserLoaded(u);
+                        }else{
+                            ModerrkowoDatabase.getInstance().sendLog(new DatabaseLog("Nie udało się załadować gracza", LogAction.UserManager_LOAD, LogResult.EXCEPTION, new PlayerIsOffline()));
+                        }
+                    }
                 }
 
                 @Override
@@ -146,8 +169,8 @@ public class ModerrkowoUserManager implements Listener {
         if(LoadedUsers.containsKey(uuid)){
             if(save){
                 SaveUser(LoadedUsers.get(uuid));
-
             }
+            ModerrkowoDatabase.getInstance().sendUserUnloaded(LoadedUsers.get(uuid));
             LoadedUsers.remove(uuid);
             Kick(uuid);
         }else{
@@ -176,6 +199,7 @@ public class ModerrkowoUserManager implements Listener {
                         @Override
                         public void onDone() {
                             ModerrkowoDatabase.getInstance().sendLog(new DatabaseLog("Pomyślnie zapisano gracza", LogAction.UserManager_SAVE, LogResult.SUCCESS));
+                            ModerrkowoDatabase.getInstance().sendUserSave(user);
                         }
 
                         @Override
@@ -188,6 +212,7 @@ public class ModerrkowoUserManager implements Listener {
                         @Override
                         public void onDone() {
                             ModerrkowoDatabase.getInstance().sendLog(new DatabaseLog("Pomyślnie zapisano gracza", LogAction.UserManager_SAVE, LogResult.SUCCESS));
+                            ModerrkowoDatabase.getInstance().sendUserSave(user);
                         }
 
                         @Override

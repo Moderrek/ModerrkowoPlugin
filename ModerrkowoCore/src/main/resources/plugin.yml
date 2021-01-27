@@ -1,0 +1,59 @@
+name: ModerrkowoCore
+version: ${project.version}
+main: pl.moderr.moderrkowo.core.Main
+api-version: 1.16
+authors: [MODERR]
+depend: [ModerrkowoDB, WorldGuard]
+commands:
+  alogi:
+    permission: moderr.admin
+  tpa:
+    permission: moderr.player
+  tpdeny:
+    permission: moderr.player
+  tpaccept:
+    permission: moderr.player
+  pogoda:
+    permission: moderr.player
+  helpop:
+    permission: moderr.player
+  ahelpop:
+    permission: moderr.admin
+  adminchat:
+    permission: moderr.admin
+    aliases: [ac,achat]
+  ainvsee:
+    permission: moderr.admin
+  asendalert:
+    permission: moderr.admin
+    aliases: [awyslijwiadomosc]
+  msg:
+    permission: moderr.player
+    aliases: [message,wiadomosc,pv,whisper]
+  reply:
+    permission: moderr.player
+    aliases: [odpowiedz,r]
+  home:
+    permission: moderr.player
+    aliases: [dom]
+  sethome:
+    permission: moderr.player
+    aliases: [ustawdom]
+  dzialka:
+    permission: moderr.player
+    aliases: [cuboid]
+  aclearchat:
+    permission: moderr.admin
+  rynek:
+    permission: moderr.admin
+  say:
+    permission: moderr.admin
+  regulamin:
+    permission: moderr.player
+  discord:
+    permission: moderr.player
+permissions:
+  moderr.admin:
+    default: op
+  moderr.player:
+    default: true
