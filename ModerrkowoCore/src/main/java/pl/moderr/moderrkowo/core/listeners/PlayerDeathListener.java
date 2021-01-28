@@ -31,7 +31,7 @@ public class PlayerDeathListener implements Listener {
         else if(e.getDeathMessage().contains("was killed by")){
             String s;
             if(e.getEntity().getKiller() == null){
-                s = e.getEntity().getLastDamageCause().getEntityType().getName();
+                s = Objects.requireNonNull(e.getEntity().getLastDamageCause()).getEntityType().name();
             }else{
                 s = e.getEntity().getKiller().getName();
             }
@@ -53,7 +53,7 @@ public class PlayerDeathListener implements Listener {
         else if(e.getDeathMessage().contains("was burnt")){
             String s;
             if(e.getEntity().getKiller() == null){
-                s = e.getEntity().getLastDamageCause().getEntityType().getName();
+                s = Objects.requireNonNull(e.getEntity().getLastDamageCause()).getEntityType().name();
             }else{
                 s = e.getEntity().getKiller().getName();
             }
@@ -62,7 +62,7 @@ public class PlayerDeathListener implements Listener {
         else if(e.getDeathMessage().contains("was fireballed")){
             String s;
             if(e.getEntity().getKiller() == null){
-                s = e.getEntity().getLastDamageCause().getEntityType().getName();
+                s = Objects.requireNonNull(e.getEntity().getLastDamageCause()).getEntityType().name();
             }else{
                 s = e.getEntity().getKiller().getName();
             }
@@ -71,7 +71,7 @@ public class PlayerDeathListener implements Listener {
         else if(e.getDeathMessage().contains("was slain by")){
             String s;
             if(e.getEntity().getKiller() == null){
-                s = e.getEntity().getLastDamageCause().getEntityType().getName();
+                s = Objects.requireNonNull(e.getEntity().getLastDamageCause()).getEntityType().name();
             }else{
                 s = e.getEntity().getKiller().getName();
             }
@@ -81,7 +81,7 @@ public class PlayerDeathListener implements Listener {
         else if(e.getDeathMessage().contains("was shot by")){
             String s;
             if(e.getEntity().getKiller() == null){
-                s = e.getEntity().getLastDamageCause().getEntityType().getName();
+                s = Objects.requireNonNull(e.getEntity().getLastDamageCause()).getEntityType().name();
             }else{
                 s = e.getEntity().getKiller().getName();
             }

@@ -8,7 +8,6 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.jetbrains.annotations.NotNull;
 import pl.moderr.moderrkowo.core.utils.ColorUtils;
 import pl.moderr.moderrkowo.core.utils.Logger;
-import pl.moderr.moderrkowo.core.utils.RandomUtils;
 
 public class SayCommand implements CommandExecutor {
 

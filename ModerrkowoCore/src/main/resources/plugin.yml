@@ -1,9 +1,9 @@
 name: ModerrkowoCore
-version: ${project.version}
+version: 1.0
 main: pl.moderr.moderrkowo.core.Main
 api-version: 1.16
 authors: [MODERR]
-depend: [ModerrkowoDB, WorldGuard]
+depend: [ModerrkowoDB,WorldGuard]
 commands:
   alogi:
     permission: moderr.admin
@@ -51,6 +51,10 @@ commands:
   regulamin:
     permission: moderr.player
   discord:
+    permission: moderr.player
+  akick:
+    permission: moderr.admin
+  craftingdzialki:
     permission: moderr.player
 permissions:
   moderr.admin:

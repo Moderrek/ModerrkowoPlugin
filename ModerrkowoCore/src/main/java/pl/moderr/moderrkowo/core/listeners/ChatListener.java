@@ -7,9 +7,6 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.jetbrains.annotations.NotNull;
 import pl.moderr.moderrkowo.core.utils.ChatUtil;
 import pl.moderr.moderrkowo.core.utils.ColorUtils;
-import pl.moderr.moderrkowo.core.utils.HexResolver;
-
-import java.awt.*;
 
 public class ChatListener implements Listener {
 

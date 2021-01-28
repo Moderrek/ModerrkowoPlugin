@@ -22,7 +22,7 @@ public class RegulaminCommand implements CommandExecutor {
         sender.sendMessage(ColorUtils.color("&c8. &eZakaz podawania się za członka administracji serwera oraz powoływania się na znajomości przez nieuprawnionych graczy."));
         sender.sendMessage(ColorUtils.color("&c9. &eZakazane są: nękanie innych graczy oraz groźby nie związane z grą."));
         sender.sendMessage(ColorUtils.color("&c10. &eZakaz pisania nagminnych próśb do administracji o itemy"));
-        sender.sendMessage(ColorUtils.color("&c11. &eTP-Kill'e są zakazane"));
+        sender.sendMessage(ColorUtils.color("&c11. &eTak zwane TP-Kill'e są zakazane"));
         sender.sendMessage(ColorUtils.color("&c12. &eZakaz nadużywania dużych liter (Caps Lock)"));
         sender.sendMessage(ColorUtils.color("&c13. &eAdmin ma zawsze racje."));
         return false;

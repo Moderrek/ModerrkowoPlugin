@@ -88,9 +88,8 @@ public final class ModerrkowoDatabase extends JavaPlugin{
         try{
             sendLog(new DatabaseLog("Zapisywanie wszystkich użytkowników online"));
             int i = 0;
-            User[] allUsers = manager.getAllUsers();
-            int total = allUsers.length;
-            for(User users : allUsers){
+            int total = manager.getAllUsers().size();
+            for(User users : manager.getAllUsers()){
                 sendLog(new DatabaseLog("   Zapisywanie " + users.getName(), LogAction.UserManager_SAVE));
                 try {
                     manager.UnloadUser(users, true);

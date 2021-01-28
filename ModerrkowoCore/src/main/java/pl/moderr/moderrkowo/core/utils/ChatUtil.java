@@ -19,5 +19,12 @@ public class ChatUtil {
             return (ChatColor.of(new Color(105, 95, 217)) + player.getName());
         }
     }
+    public static String getPrefix(Player player){
+        if(player.isOp()){
+            return ColorUtils.color("&c&lADM &e") + player.getName();
+        }else{
+            return player.getName();
+        }
+    }
 
 }

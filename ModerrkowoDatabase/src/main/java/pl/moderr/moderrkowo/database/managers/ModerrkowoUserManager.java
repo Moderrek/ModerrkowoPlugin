@@ -24,6 +24,7 @@ import pl.moderr.moderrkowo.database.exceptions.PlayerIsOffline;
 import pl.moderr.moderrkowo.database.exceptions.UserIsAlreadyLoaded;
 import pl.moderr.moderrkowo.database.exceptions.UserNotLoaded;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -94,8 +95,8 @@ public class ModerrkowoUserManager implements Listener {
     /**
      * @return Zwraca całą tablice załadowanych użytkowników
      */
-    public User[] getAllUsers(){
-        return (User[]) LoadedUsers.values().toArray();
+    public Collection<User> getAllUsers(){
+        return LoadedUsers.values();
     }
     /**
      * Wyrzuca gracza z serwera
