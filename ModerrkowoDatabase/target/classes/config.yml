@@ -1,0 +1,7 @@
+# ModerrDatabase Lib
+host: "examplehost"
+port: "3306"
+database: "db"
+username: "root"
+password: "password"
+table-user: "users"

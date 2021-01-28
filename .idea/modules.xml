@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Moderrkowo/Moderrkowo.iml" filepath="$PROJECT_DIR$/Moderrkowo/Moderrkowo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ModerrkowoDatabase/ModerrkowoDatabase.iml" filepath="$PROJECT_DIR$/ModerrkowoDatabase/ModerrkowoDatabase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ModerrkowoPlugins.iml" filepath="$PROJECT_DIR$/ModerrkowoPlugins.iml" />
+    </modules>
+  </component>
+</project>

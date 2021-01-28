@@ -1,0 +1,6 @@
+name: ModerrkowoDB
+version: 1.0
+main: pl.moderr.moderrkowo.database.ModerrkowoDatabase
+api-version: 1.16
+load: STARTUP
+authors: [MODERR]

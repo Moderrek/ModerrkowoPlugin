@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ModerrkowoCore">
+    <output-path>$USER_HOME$/Desktop/Serwer/plugins</output-path>
+    <root id="archive" name="ModerrkowoCore.jar">
+      <element id="module-output" name="Moderrkowo" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/biblioteki/ModerrkowoDatabase.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

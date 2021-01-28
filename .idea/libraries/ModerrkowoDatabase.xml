@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ModerrkowoDatabase">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/biblioteki/ModerrkowoDatabase.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
