@@ -89,7 +89,7 @@ public class ModerrAntyLogout implements Listener {
                 return;
             }
         }
-        
+
         Entity whoWasHit = e.getEntity();
         Random rd = new Random();
 
