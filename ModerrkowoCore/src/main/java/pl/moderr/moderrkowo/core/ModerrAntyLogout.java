@@ -50,7 +50,7 @@ public class ModerrAntyLogout implements Listener {
     public void onQuit(PlayerQuitEvent e){
         if(antyLogout.containsKey(e.getPlayer().getUniqueId())){
             try{
-                e.getPlayer().damage(100000, e.getPlayer().getLastDamageCause().getEntity());
+                e.getPlayer().damage(100000, Objects.requireNonNull(e.getPlayer().getLastDamageCause()).getEntity());
             }catch(Exception ignored){
                 e.getPlayer().damage(100000);
             }
@@ -89,7 +89,7 @@ public class ModerrAntyLogout implements Listener {
                 return;
             }
         }
-        Entity whoHit = e.getDamager();;
+        
         Entity whoWasHit = e.getEntity();
         Random rd = new Random();
 
@@ -110,13 +110,8 @@ public class ModerrAntyLogout implements Listener {
         as.setCanPickupItems(false);
         as.setCollidable(false);
         as.setSilent(true);
-        as.setVelocity(as.getVelocity().setY(as.getLocation().getWorld().getHighestBlockYAt(as.getLocation())));
-        Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
-            @Override
-            public void run() {
-                as.remove();
-            }
-        }, 20L * RandomUtils.getRandomInt(1, 2));
+        as.setVelocity(as.getVelocity().setY(Objects.requireNonNull(as.getLocation().getWorld()).getHighestBlockYAt(as.getLocation())));
+        Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), as::remove, 20L * RandomUtils.getRandomInt(1, 2));
         if(e.getCause().equals(EntityDamageEvent.DamageCause.PROJECTILE)){
             if(e.getDamager() instanceof Arrow){
                 Arrow arrow = (Arrow) e.getDamager();
